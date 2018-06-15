@@ -306,7 +306,7 @@ public class PasswordValidator  {
 ```  
 **Please NOTE:** Run your tests and make sure they still pass.  
 
-Let's update the PasswordValidator class diagram represent our current implementation.  
+Let's update the PasswordValidator class diagram to represent our current implementation.  
 ![Updated Password Validator HLD](./src/test/resources/images/updated-password-validator-hld.png)
 ### Push Left Design Principle
 The 2 *Predicate* variables can be "pushed to the left" and the variables in question will be abstracted into a collection on the *PasswordValidator* component.
