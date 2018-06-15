@@ -235,7 +235,7 @@ class PasswordValidatorTest extends Specification {
     }
 }
 ```
-Do you notice from the 2 test cases that there is test code duplication, this will be addressed later using the ** Parameterized Test Pattern **.
+Do you notice from the 2 test cases that there is test code duplication, this will be addressed later using the **Parameterized Test Pattern**.
 
 ### No Lowercase Failing Test Case
 ![No Lower Case Failing Test](./src/test/resources/images/no-lowercase-failing-test.png)
