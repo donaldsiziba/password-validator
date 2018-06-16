@@ -907,7 +907,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
 ![Password with Whitespace Passing Test](./src/test/resources/images/password-with-whitespace-passing-test.png)
 ## The Seventh Test Criteria
 ### Happy Day Scenario
-We can finally test the *Happy Day Scenario
+We can finally test the **Happy Day Scenario**
 #### JUnit
 ```java
 @RunWith(Parameterized.class)
@@ -1070,3 +1070,16 @@ class PasswordValidatorTest extends Specification {
 ```
 ### Multiple Violations Passing Test Case
 ![Multiple Violations Passing Test](./src/test/resources/images/multiple-violations-passing-test.png)
+
+## Execute the build
+To run the build, simply type the following in command line:
+```bash
+mvn test
+```
+
+## Spock Reports
+After the build has run, the test reports can be found in _target/spock-reports_. Use a browser to view the _index.html_ file.
+### Specifications Summary Page
+![Specification Summary Page](src/test/resources/images/specifications-summary.png)
+### Feature Summary Page
+![Feature Summary Page](src/test/resources/images/feature-summary-page.png)
