@@ -17,6 +17,8 @@ acceptance criteria.
 * This is the complete list of ASCII Special Characters - !"#$%&'()*+,-.\\:;<=>?@[/]^_`{|}~
 * This component will be integrated to a Client via an API.
 
+>Note: Click [here](https://github.com/donaldsiziba/password-validator#execute-the-build) for details on how to run the build.
+
 # Solution
 Normal developer instinct would dictate that you straight away write the implementation without the test case, but that is not the way how **Test Driven Development** (TDD) works...
 
