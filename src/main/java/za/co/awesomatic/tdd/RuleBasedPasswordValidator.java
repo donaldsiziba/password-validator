@@ -19,7 +19,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
 
     @Override
     public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(validationData))
+        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
                                               .collect(Collectors.toList());
         return new ValidationResult(messages.isEmpty(), messages);

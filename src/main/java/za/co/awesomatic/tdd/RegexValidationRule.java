@@ -18,6 +18,6 @@ public class RegexValidationRule implements ValidationRule {
 
     @Override
     public boolean test(ValidationData validationData) {
-        return validationData.getPassword().matches(regex);
+        return !validationData.getPassword().matches(regex);
     }
 }

@@ -416,15 +416,30 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
     }
 }
 ```
-The *Predicate* interface has a *negate* method. This method returns a predicate that represents the logical negation of the given predicate.  
-This means that this code snippet
+We can move the boolean negation (!) operator from the password implementation into the RegexValidatonRule.
+
 ```java
-rule -> !rule.test(validationData)
+public class RegexValidationRule implements ValidationRule {
+    private final String regex;
+    private final String message;
+
+    public RegexValidationRule(final String regex, final String message) {
+        this.regex = regex;
+        this.message = message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public boolean test(ValidationData validationData) {
+        return !validationData.getPassword().matches(regex);
+    }
+}
 ```
-can be substituted with this code snippet
-```java
-rule -> rule.negate().test(validationData);
-```
+
 ```java
 public class RuleBasedPasswordValidator implements PasswordValidator  {
     private List<ValidationRule> rules = new ArrayList<ValidationRule>() {{
@@ -434,7 +449,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
 
     @Override
     public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(validationData))
+        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
                                               .collect(Collectors.toList());
         return new ValidationResult(messages.isEmpty(), messages);
@@ -600,7 +615,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
 
     @Override
     public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(validationData))
+        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
                                               .collect(Collectors.toList());
         return new ValidationResult(messages.isEmpty(), messages);
@@ -697,7 +712,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
 
     @Override
     public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(validationData))
+        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
                                               .collect(Collectors.toList());
         return new ValidationResult(messages.isEmpty(), messages);
@@ -796,7 +811,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
 
     @Override
     public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(validationData))
+        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
                                               .collect(Collectors.toList());
         return new ValidationResult(messages.isEmpty(), messages);
@@ -898,7 +913,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
 
     @Override
     public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(validationData))
+        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
                                               .collect(Collectors.toList());
         return new ValidationResult(messages.isEmpty(), messages);
