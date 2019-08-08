@@ -4,8 +4,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class ValidationResult {
-    private final boolean valid;
-    private final List<String> messages;
+    private boolean valid;
+    private List<String> messages;
+
+    public ValidationResult() {}
 
     public ValidationResult(final boolean valid, final List<String> messages) {
         this.valid = valid;
@@ -18,5 +20,13 @@ public class ValidationResult {
 
     public List<String> getMessages() {
         return Collections.unmodifiableList(messages);
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
     }
 }

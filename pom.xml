@@ -4,7 +4,7 @@
 
     <groupId>za.co.awesomatic.tdd</groupId>
     <artifactId>password-validator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Password Validator</name>
 
