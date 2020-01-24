@@ -106,7 +106,7 @@ public class PasswordValidatorTestCase {
 }
 ```
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
@@ -200,7 +200,7 @@ public class PasswordValidatorTestCase {
 
 ```
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
@@ -573,7 +573,7 @@ public class PasswordValidatorTestCase {
 }
 ```
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
@@ -668,7 +668,7 @@ public class PasswordValidatorTestCase {
 ```
 
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
@@ -765,8 +765,8 @@ public class PasswordValidatorTestCase {
 }
 ```
 #### Spock
-```java
-lass PasswordValidatorTest extends Specification {
+```groovy
+class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
     def setup() {
@@ -865,7 +865,7 @@ public class PasswordValidatorTestCase {
 }
 ```
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
@@ -969,7 +969,7 @@ public class PasswordValidatorTestCase {
 }
 ```
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
@@ -1052,7 +1052,7 @@ public class PasswordValidatorTestCase {
 }
 ```
 #### Spock
-```java
+```groovy
 class PasswordValidatorTest extends Specification {
     PasswordValidator passwordValidator
 
