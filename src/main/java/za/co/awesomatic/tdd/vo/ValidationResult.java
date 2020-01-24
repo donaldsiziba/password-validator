@@ -21,12 +21,4 @@ public class ValidationResult {
     public List<String> getMessages() {
         return Collections.unmodifiableList(messages);
     }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-
-    public void setMessages(List<String> messages) {
-        this.messages = messages;
-    }
 }

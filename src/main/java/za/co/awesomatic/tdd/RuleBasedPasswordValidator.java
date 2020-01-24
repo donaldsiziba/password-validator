@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toCollection;
+
 public class RuleBasedPasswordValidator implements PasswordValidator {
     private List<ValidationRule> rules = new ArrayList<ValidationRule>() {{
         add(new RegexValidationRule(".*[A-Z].*", "Password should have at least one uppercase character"));
@@ -21,7 +23,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
