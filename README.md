@@ -411,7 +411,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> !rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
@@ -451,7 +451,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
@@ -617,7 +617,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
@@ -714,7 +714,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
@@ -813,7 +813,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
@@ -915,7 +915,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     public ValidationResult validate(final ValidationData validationData) {
         List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
                                               .map(ValidationRule::getMessage)
-                                              .collect(Collectors.toList());
+                                              .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
     }
 }
