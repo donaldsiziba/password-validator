@@ -82,7 +82,7 @@ import java.util.ArrayList;
 
 public class PasswordValidator {
    public ValidationResult validate(ValidationData validationData) {
-      return new ValidationResult(false, new ArrayList<>());
+      return new ValidationResult(true, new ArrayList<>());
    }
 }
 ```
