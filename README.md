@@ -73,13 +73,17 @@ public class ValidationResult {
 ```
 
 ### Password Validator Component
-Create the component class with no implementation.
+Create the component class with the _happy day scenario_ as the implementation.
 
 ```java
-public class PasswordValidator  {
-    public ValidationResult validate(ValidationData validationData) {
-        return null;
-    }
+import za.co.awesomatic.tdd.vo.ValidationResult;
+
+import java.util.ArrayList;
+
+public class PasswordValidator {
+   public ValidationResult validate(ValidationData validationData) {
+      return new ValidationResult(false, new ArrayList<>());
+   }
 }
 ```
 ## The First Test Criteria
