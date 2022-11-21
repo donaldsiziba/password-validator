@@ -14,7 +14,7 @@ is wrong with the given password. The returned message should be similar to the 
 acceptance criteria.
 
 **HINT:**  
-* This is the complete list of ASCII Special Characters - !"#$%&'()*+,-.\\:;<=>?@[/]^_`{|}~
+* This is the complete list of ASCII Special Characters - !"#$%&'()*+,-.\\:;<=>?@[/]^_`{|}~ and this can be represented by the following regular expression [^a-zA-Z0-9]
 * This component will be integrated to a Client via an API.
 
 >Note: Click [here](https://github.com/donaldsiziba/password-validator#execute-the-build) for details on how to run the build.
@@ -711,7 +711,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
         add(new RegexValidationRule(".*[A-Z].*", "Password should have at least one uppercase character"));
         add(new RegexValidationRule(".*[a-z].*", "Password should have at least one lowercase character"));
         add(new RegexValidationRule(".*[0-9].*", "Password should have at least one digit"));
-        add(new RegexValidationRule(".*[@#$%].*", "Password should have at least one special character"));
+        add(new RegexValidationRule(".*[^a-zA-Z0-9].*", "Password should have at least one special character"));
     }};
 
     @Override
@@ -809,7 +809,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
         add(new RegexValidationRule(".*[A-Z].*", "Password should have at least one uppercase character"));
         add(new RegexValidationRule(".*[a-z].*", "Password should have at least one lowercase character"));
         add(new RegexValidationRule(".*[0-9].*", "Password should have at least one digit"));
-        add(new RegexValidationRule(".*[@#$%].*", "Password should have at least one special character"));
+        add(new RegexValidationRule(".*[^a-zA-Z0-9].*", "Password should have at least one special character"));
         add(new RegexValidationRule(".{12,}", "Password should be at least 12 characters long"));
     }};
 
@@ -910,7 +910,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
         add(new RegexValidationRule(".*[A-Z].*", "Password should have at least one uppercase character"));
         add(new RegexValidationRule(".*[a-z].*", "Password should have at least one lowercase character"));
         add(new RegexValidationRule(".*[0-9].*", "Password should have at least one digit"));
-        add(new RegexValidationRule(".*[@#$%].*", "Password should have at least one special character"));
+        add(new RegexValidationRule(".*[^a-zA-Z0-9].*", "Password should have at least one special character"));
         add(new RegexValidationRule(".{12,}", "Password should be at least 12 characters long"));
         add(new RegexValidationRule("\\S+$", "Password should not have any whitespaces"));
     }};

@@ -13,7 +13,7 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
         add(new RegexValidationRule(".*[A-Z].*", "Password should have at least one uppercase character"));
         add(new RegexValidationRule(".*[a-z].*", "Password should have at least one lowercase character"));
         add(new RegexValidationRule(".*[0-9].*", "Password should have at least one digit"));
-        add(new RegexValidationRule(".*[!\"#$%&'()*+,-.\\:;<=>?@[/]^_`{|}~].*", "Password should have at least one special character"));
+        add(new RegexValidationRule(".*[^a-zA-Z0-9].*", "Password should have at least one special character"));
         add(new RegexValidationRule(".{12,}", "Password should be at least 12 characters long"));
         add(new RegexValidationRule("\\S+$", "Password should not have any whitespaces"));
     }};
