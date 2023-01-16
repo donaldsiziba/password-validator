@@ -1,6 +1,6 @@
 package za.co.awesomatic.tdd;
 
-import za.co.awesomatic.tdd.vo.ValidationData;
+import za.co.awesomatic.tdd.dto.PasswordValidationRequest;
 
 public class RegexValidationRule implements ValidationRule {
     private final String regex;
@@ -17,7 +17,7 @@ public class RegexValidationRule implements ValidationRule {
     }
 
     @Override
-    public boolean test(ValidationData validationData) {
-        return !validationData.getPassword().matches(regex);
+    public boolean test(PasswordValidationRequest request) {
+        return request.getPassword().matches(regex);
     }
 }

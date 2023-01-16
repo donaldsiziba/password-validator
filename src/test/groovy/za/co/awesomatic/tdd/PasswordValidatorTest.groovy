@@ -2,14 +2,14 @@ package za.co.awesomatic.tdd
 
 import spock.lang.Specification
 import spock.lang.Unroll
-import za.co.awesomatic.tdd.vo.ValidationData
-import za.co.awesomatic.tdd.vo.ValidationResult
+import za.co.awesomatic.tdd.dto.PasswordValidationRequest
+import za.co.awesomatic.tdd.dto.PasswordValidationResponse
 
 class PasswordValidatorTest extends Specification {
-    RuleBasedPasswordValidator passwordValidator
+    PasswordValidator passwordValidator
 
     def setup() {
-        passwordValidator = new RuleBasedPasswordValidator()
+        passwordValidator = new PasswordValidator()
     }
 
     @Unroll
@@ -17,7 +17,7 @@ class PasswordValidatorTest extends Specification {
         given: "the following password: #password"
 
         when: "the password is validated"
-            ValidationResult result = passwordValidator.validate(new ValidationData(password))
+        PasswordValidationResponse result = passwordValidator.apply(new PasswordValidationRequest(password))
 
         then: "the result should be #valid"
             result.valid == valid

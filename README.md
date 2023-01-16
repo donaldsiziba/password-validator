@@ -2,20 +2,20 @@
 In order to avoid hackers compromising member accounts, your business owner has asked you to implement a password
 validation component that satisfies the acceptance criteria detailed below.
 ##### Acceptance Criteria
-1. Password should have at least one uppercase character
-2. Password should have at least one lowercase character
-3. Password should have at least one digit
-4. Password should have at least one special character
-5. Password should be at least 12 characters long
-6. Password should not have any whitespaces  
+1. The password should have at least one uppercase character
+2. The password should have at least one lowercase character
+3. The password should have at least one digit
+4. The password should have at least one special character
+5. The password should be at least 12 characters long
+6. The password should not have any whitespaces  
 
-In the case of a user entering a non-compliant password, the component should return a message notifying the user what
-is wrong with the given password. The returned message should be similar to the corresponding description in the
-acceptance criteria.
+If a user enters a non-compliant password, the component should return a message notifying the user of what is wrong
+with the given password. The returned message should be similar to the corresponding description in the acceptance
+criteria.
 
-**HINT:**  
-* This is the complete list of ASCII Special Characters - !"#$%&'()*+,-.\\:;<=>?@[/]^_`{|}~ and this can be represented by the following regular expression [^a-zA-Z0-9]
-* This component will be integrated to a Client via an API.
+**HINT:**
+* This is the complete list of ASCII Special Character - !"#$%&'()*+,-.\:;<=>?@[/]^_`{|}~ and this can be
+  represented by the following regular expression [^a-zA-Z0–9]
 
 >Note: Click [here](https://github.com/donaldsiziba/password-validator#execute-the-build) for details on how to run the build.
 
@@ -76,13 +76,13 @@ public class ValidationResult {
 Create the component class with the _happy day scenario_ as the implementation.
 
 ```java
-import za.co.awesomatic.tdd.vo.ValidationResult;
+import za.co.awesomatic.tdd.dto.PasswordValidationResponse;
 
 import java.util.ArrayList;
 
 public class PasswordValidator {
-   public ValidationResult validate(ValidationData validationData) {
-      return new ValidationResult(true, new ArrayList<>());
+   public PasswordValidationResponse validate(ValidationData passwordValidationRequest) {
+      return new PasswordValidationResponse(true, new ArrayList<>());
    }
 }
 ```
@@ -139,9 +139,9 @@ class PasswordValidatorTest extends Specification {
 The solution involves pattern matching string expressions so it makes sense to use [Regular Expressions](https://en.wikipedia.org/wiki/Regular_expression).
 ```java
 public class PasswordValidator  {
-    public ValidationResult validate(ValidationData validationData) {
+    public ValidationResult validate(ValidationData passwordValidationRequest) {
         List<String> messages = new ArrayList<>();
-        boolean isUppercaseCharacterPresent = validationData.getPassword().matches(".*[A-Z].*");
+        boolean isUppercaseCharacterPresent = passwordValidationRequest.getPassword().matches(".*[A-Z].*");
         if(!isUppercaseCharacterPresent) {
             messages.add("Password should have at least one uppercase character");
         }
@@ -155,16 +155,16 @@ public class PasswordValidator  {
 The *isUppercaseCharacterPresent* variable can be extracted into a method.
 ```java
 public class PasswordValidator  {
-    public ValidationResult validate(ValidationData validationData) {
+    public ValidationResult validate(ValidationData passwordValidationRequest) {
         List<String> messages = new ArrayList<>();
-        if(!isUppercaseCharacterPresent(validationData)) {
+        if(!isUppercaseCharacterPresent(passwordValidationRequest)) {
             messages.add("Password should have at least one uppercase character");
         }
         return new ValidationResult(messages.isEmpty(), messages);
     }
 
-    private boolean isUppercaseCharacterPresent(ValidationData validationData) {
-        return validationData.getPassword().matches(".*[A-Z].*");
+    private boolean isUppercaseCharacterPresent(ValidationData passwordValidationRequest) {
+        return passwordValidationRequest.getPassword().matches(".*[A-Z].*");
     }
 }
 ```
@@ -249,23 +249,23 @@ Do you notice from the 2 test cases that there is test code duplication, this wi
 ### No Lowercase Implementation
 ```java
 public class PasswordValidator  {
-    public ValidationResult validate(ValidationData validationData) {
+    public ValidationResult validate(ValidationData passwordValidationRequest) {
         List<String> messages = new ArrayList<>();
-        if(!isUppercaseCharacterPresent(validationData)) {
+        if(!isUppercaseCharacterPresent(passwordValidationRequest)) {
             messages.add("Password should have at least one uppercase character");
         }
-        if(!isLowerCaseCharacterPresent(validationData)) {
+        if(!isLowerCaseCharacterPresent(passwordValidationRequest)) {
             messages.add("Password should have at least one lowercase character");
         }
         return new ValidationResult(messages.isEmpty(), messages);
     }
 
-    private boolean isUppercaseCharacterPresent(ValidationData validationData) {
-        return validationData.getPassword().matches(".*[A-Z].*");
+    private boolean isUppercaseCharacterPresent(ValidationData passwordValidationRequest) {
+        return passwordValidationRequest.getPassword().matches(".*[A-Z].*");
     }
 
-    private boolean isLowerCaseCharacterPresent(ValidationData validationData) {
-        return validationData.getPassword().matches(".*[a-z].*");
+    private boolean isLowerCaseCharacterPresent(ValidationData passwordValidationRequest) {
+        return passwordValidationRequest.getPassword().matches(".*[a-z].*");
     }
 }
 ```
@@ -295,15 +295,15 @@ A *Predicate* can therefore be used as the assignment target for a [lambda expre
 ### Refactor Password Validator Component to use Predicates
 ```java
 public class PasswordValidator  {
-    private Predicate<ValidationData> isUppercaseCharacterPresent = validationData -> validationData.getPassword().matches(".*[A-Z].*");
-    private Predicate<ValidationData> isLowerCaseCharacterPresent = validationData -> validationData.getPassword().matches(".*[a-z].*");
+    private Predicate<ValidationData> isUppercaseCharacterPresent = passwordValidationRequest -> passwordValidationRequest.getPassword().matches(".*[A-Z].*");
+    private Predicate<ValidationData> isLowerCaseCharacterPresent = passwordValidationRequest -> passwordValidationRequest.getPassword().matches(".*[a-z].*");
 
-    public ValidationResult validate(ValidationData validationData) {
+    public ValidationResult validate(ValidationData passwordValidationRequest) {
         List<String> messages = new ArrayList<>();
-        if(!isUppercaseCharacterPresent.test(validationData)) {
+        if(!isUppercaseCharacterPresent.test(passwordValidationRequest)) {
             messages.add("Password should have at least one uppercase character");
         }
-        if(!isLowerCaseCharacterPresent.test(validationData)) {
+        if(!isLowerCaseCharacterPresent.test(passwordValidationRequest)) {
             messages.add("Password should have at least one lowercase character");
         }
         return new ValidationResult(messages.isEmpty(), messages);
@@ -322,12 +322,12 @@ Update the code to match the Password Validator Class Diagram
 public class PasswordValidator  {
     private List<Predicate<ValidationData>> rules = new ArrayList<>();
 
-    public ValidationResult validate(ValidationData validationData) {
+    public ValidationResult validate(ValidationData passwordValidationRequest) {
         List<String> messages = new ArrayList<>();
-        if(!isUppercaseCharacterPresent.test(validationData)) {
+        if(!isUppercaseCharacterPresent.test(passwordValidationRequest)) {
             messages.add("Password should have at least one uppercase character");
         }
-        if(!isLowerCaseCharacterPresent.test(validationData)) {
+        if(!isLowerCaseCharacterPresent.test(passwordValidationRequest)) {
             messages.add("Password should have at least one lowercase character");
         }
         return new ValidationResult(messages.isEmpty(), messages);
@@ -363,15 +363,15 @@ public class RegexValidationRule implements ValidationRule {
     }
 
     @Override
-    public boolean test(ValidationData validationData) {
-        return validationData.getPassword().matches(regex);
+    public boolean test(ValidationData passwordValidationRequest) {
+        return passwordValidationRequest.getPassword().matches(regex);
     }
 }
 ```
 ### Password Validator Interface
 ```java
 public interface PasswordValidator {
-    ValidationResult validate(ValidationData validationData);
+    ValidationResult validate(ValidationData passwordValidationRequest);
 }
 ```
 ### Password Validator Concrete Implementation
@@ -383,10 +383,10 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
   }};
 
   @Override
-  public ValidationResult validate(final ValidationData validationData) {
+  public ValidationResult validate(final ValidationData passwordValidationRequest) {
     List<String> messages = new ArrayList<>();
     for(ValidationRule rule : rules) {
-      if(!rule.test(validationData)) {
+      if(!rule.test(passwordValidationRequest)) {
         messages.add(rule.getMessage());
       }
     }
@@ -412,8 +412,8 @@ public class RuleBasedPasswordValidator implements PasswordValidator {
     }};
 
     @Override
-    public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> !rule.test(validationData))
+    public ValidationResult validate(final ValidationData passwordValidationRequest) {
+        List<String> messages = rules.stream().filter(rule -> !rule.test(passwordValidationRequest))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
@@ -438,8 +438,8 @@ public class RegexValidationRule implements ValidationRule {
     }
 
     @Override
-    public boolean test(ValidationData validationData) {
-        return !validationData.getPassword().matches(regex);
+    public boolean test(ValidationData passwordValidationRequest) {
+        return !passwordValidationRequest.getPassword().matches(regex);
     }
 }
 ```
@@ -452,8 +452,8 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     }};
 
     @Override
-    public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
+    public ValidationResult validate(final ValidationData passwordValidationRequest) {
+        List<String> messages = rules.stream().filter(rule -> rule.test(passwordValidationRequest))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
@@ -618,8 +618,8 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     }};
 
     @Override
-    public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
+    public ValidationResult validate(final ValidationData passwordValidationRequest) {
+        List<String> messages = rules.stream().filter(rule -> rule.test(passwordValidationRequest))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
@@ -715,8 +715,8 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     }};
 
     @Override
-    public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
+    public ValidationResult validate(final ValidationData passwordValidationRequest) {
+        List<String> messages = rules.stream().filter(rule -> rule.test(passwordValidationRequest))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
@@ -814,8 +814,8 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     }};
 
     @Override
-    public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
+    public ValidationResult validate(final ValidationData passwordValidationRequest) {
+        List<String> messages = rules.stream().filter(rule -> rule.test(passwordValidationRequest))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);
@@ -916,8 +916,8 @@ public class RuleBasedPasswordValidator implements PasswordValidator  {
     }};
 
     @Override
-    public ValidationResult validate(final ValidationData validationData) {
-        List<String> messages = rules.stream().filter(rule -> rule.test(validationData))
+    public ValidationResult validate(final ValidationData passwordValidationRequest) {
+        List<String> messages = rules.stream().filter(rule -> rule.test(passwordValidationRequest))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new ValidationResult(messages.isEmpty(), messages);

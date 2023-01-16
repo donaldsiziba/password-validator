@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import za.co.awesomatic.tdd.vo.ValidationData;
-import za.co.awesomatic.tdd.vo.ValidationResult;
+import za.co.awesomatic.tdd.dto.PasswordValidationRequest;
+import za.co.awesomatic.tdd.dto.PasswordValidationResponse;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -44,12 +44,12 @@ public class PasswordValidatorTestCase {
 
     @Before
     public void setUp() {
-        passwordValidator = new RuleBasedPasswordValidator();
+        passwordValidator = new PasswordValidator();
     }
 
     @Test
     public void validatePassword() {
-        ValidationResult result = passwordValidator.validate(new ValidationData(password));
+        PasswordValidationResponse result = passwordValidator.apply(new PasswordValidationRequest(password));
 
         assertEquals(result.isValid(), valid);
         assertArrayEquals(result.getMessages().toArray(), messages);
