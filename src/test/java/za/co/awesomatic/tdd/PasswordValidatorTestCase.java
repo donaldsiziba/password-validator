@@ -18,15 +18,15 @@ public class PasswordValidatorTestCase {
     @Parameterized.Parameters(name= "{index}: validate({0})")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                {"userp@ssw0rd", false, new String[] {"Password should have at least one uppercase character"}},
-                {"USERP@SSW0RD", false, new String[] {"Password should have at least one lowercase character"}},
-                {"UserP@ssword", false, new String[] {"Password should have at least one digit"}},
-                {"UserPassw0rd", false, new String[] {"Password should have at least one special character"}},
-                {"UserP@sw0rd", false, new String[] {"Password should be at least 12 characters long"}},
-                {"User   P@ss w0rd", false, new String[] {"Password should not have any whitespaces"}},
+                {"userp@ssw0rd", false, new String[] {"The password should have at least one uppercase character"}},
+                {"USERP@SSW0RD", false, new String[] {"The password should have at least one lowercase character"}},
+                {"UserP@ssword", false, new String[] {"The password should have at least one digit"}},
+                {"UserPassw0rd", false, new String[] {"The password should have at least one special character"}},
+                {"UserP@sw0rd", false, new String[] {"The password should be at least 12 characters long"}},
+                {"User   P@ss w0rd", false, new String[] {"The password should not have any whitespaces"}},
                 {"UserP@ssw0rD", true, new String[] {}},
-                {"userpasword", false, new String[] {"Password should have at least one uppercase character", "Password should have at least one digit",
-                        "Password should have at least one special character", "Password should be at least 12 characters long"}}
+                {"userpasword", false, new String[] {"The password should have at least one uppercase character", "The password should have at least one digit",
+                        "The password should have at least one special character", "The password should be at least 12 characters long"}}
         });
     }
 
