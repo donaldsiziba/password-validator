@@ -17,10 +17,8 @@ criteria.
 * This is the complete list of ASCII Special Character - !"#$%&'()*+,-.\:;<=>?@[/]^_`{|}~ and this can be
   represented by the following regular expression [^a-zA-Z0–9]
 
->Note: Click [here](https://github.com/donaldsiziba/password-validator#execute-the-build) for details on how to run the build.
-
 # Solution
-The solution to this requirement is comprehensively documented in this blog article.
+The solution to this requirement is comprehensively documented in this [blog article](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-b453ba60c7bc).
 
 ## Execute the build
 To run the build, simply type the following in command line:
