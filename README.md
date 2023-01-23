@@ -18,7 +18,9 @@ criteria.
   represented by the following regular expression [^a-zA-Z0–9]
 
 # Solution
-The solution to this requirement is comprehensively documented in this [blog article](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-b453ba60c7bc).
+The solution to this requirement is comprehensively documented in a 2 part TDD Kata series
+1. [A Comprehensive TDD Kata](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-b453ba60c7bc)
+2. A Comprehensive TDD Kata 2
 
 ## Execute the build
 To run the build, simply type the following in command line:
