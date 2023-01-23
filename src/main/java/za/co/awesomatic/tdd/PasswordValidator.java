@@ -17,11 +17,12 @@ public class PasswordValidator implements Function<PasswordValidationRequest, Pa
         add(new RegexValidationRule(".*[^a-zA-Z0-9].*", "The password should have at least one special character"));
         add(new RegexValidationRule(".{12,}", "The password should be at least 12 characters long"));
         add(new RegexValidationRule("\\S+$", "The password should not have any whitespaces"));
+        add(new PasswordHistoryValidationRule("The password should not match any of the previous passwords"));
     }};
 
     @Override
     public PasswordValidationResponse apply(PasswordValidationRequest request) {
-        List<String> messages = rules.stream().filter(rule -> rule.negate().test(request))
+        List<String> messages = rules.stream().filter(rule -> rule.test(request))
                                               .map(ValidationRule::getMessage)
                                               .collect(toCollection(ArrayList::new));
         return new PasswordValidationResponse(messages.isEmpty(), messages);
