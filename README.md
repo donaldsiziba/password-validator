@@ -19,8 +19,8 @@ criteria.
 
 # Solution
 The solution to this requirement is comprehensively documented in a 2 part TDD Kata series
-1. [A Comprehensive TDD Kata](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-b453ba60c7bc)
-2. [A Comprehensive TDD Kata 2](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-2-c8a44a00c1be)
+1. [A Comprehensive TDD Kata](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-b453ba60c7bc?source=friends_link&sk=e1e5a028a6ca3635714ff31cb6057de6)
+2. [A Comprehensive TDD Kata 2](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-2-c8a44a00c1be?source=friends_link&sk=958675be58260bd4b51f5e94a826835d)
 
 ## Execute the build
 To run the build, simply type the following in command line:
