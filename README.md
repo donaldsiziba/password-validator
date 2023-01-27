@@ -20,7 +20,7 @@ criteria.
 # Solution
 The solution to this requirement is comprehensively documented in a 2 part TDD Kata series
 1. [A Comprehensive TDD Kata](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-b453ba60c7bc)
-2. A Comprehensive TDD Kata 2
+2. [A Comprehensive TDD Kata 2](https://medium.com/@donaldsiziba/a-comprehensive-tdd-kata-2-c8a44a00c1be)
 
 ## Execute the build
 To run the build, simply type the following in command line:
